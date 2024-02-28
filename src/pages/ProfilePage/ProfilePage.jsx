@@ -4,6 +4,7 @@ import {
   Link,
   Skeleton,
   SkeletonCircle,
+  Text,
   VStack,
 } from "@chakra-ui/react";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
@@ -12,16 +13,16 @@ import ProfilePosts from "../../components/Profile/ProfilePosts";
 import useGetUserProfileByUsername from "../../hooks/useGetUserProfileByUsername";
 import { useParams } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
+
 const ProfilePage = () => {
   const { username } = useParams();
   const { isLoading, userProfile } = useGetUserProfileByUsername(username);
 
   const userNotFound = !isLoading && !userProfile;
-  if (userNotFound) {
-    return <UserNotFound />;
-  }
+  if (userNotFound) return <UserNotFound />;
+
   return (
-    <Container maxW={"container.lg"} py={5}>
+    <Container maxW="container.lg" py={5}>
       <Flex
         py={10}
         px={4}
@@ -33,7 +34,6 @@ const ProfilePage = () => {
         {!isLoading && userProfile && <ProfileHeader />}
         {isLoading && <ProfileHeaderSkeleton />}
       </Flex>
-
       <Flex
         px={{ base: 2, sm: 4 }}
         maxW={"full"}
@@ -51,6 +51,7 @@ const ProfilePage = () => {
 
 export default ProfilePage;
 
+// skeleton for profile header
 const ProfileHeaderSkeleton = () => {
   return (
     <Flex
