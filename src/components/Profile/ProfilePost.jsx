@@ -177,10 +177,14 @@ const ProfilePost = ({ post }) => {
                   alignItems={"start"}
                   maxH={"350px"}
                   overflowY={"auto"}
-                ></VStack>
+                >
+                  {post.comments.map((comment) => (
+                    <Comment key={comment.id} comment={comment} />
+                  ))}
+                </VStack>
                 <Divider my={4} bg={"gray.800"} />
 
-                <PostFooter isProfilePage={true} />
+                <PostFooter isProfilePage={true} post={post} />
               </Flex>
             </Flex>
           </ModalBody>
